@@ -1,0 +1,39 @@
+@if(this.hero){
+  <mat-grid-list cols="2" class="mt-5">
+    <mat-grid-tile>
+      <div class="contenido-izquierda">
+        <!-- contenido de la columna izquierda --> 
+          <div class="contenido-derecha">
+            <div class="col text-center p-3 border-round-sm bg-primary">
+              <img class="" [src]="this.hero | heroImage" [alt]="hero.superhero" />
+            </div>
+          </div>
+      </div>
+    </mat-grid-tile>
+  
+    <mat-grid-tile>
+      <div class="contenido-derecha">
+        <!-- contenido de la columna derecha -->
+        <h1 class="text-center pb-6"><b><u> {{ this.hero.superhero }} </u></b></h1>
+        <h2><i>{{ this.hero.alter_ego }} </i></h2>
+        <h3>{{ this.hero.publisher }}</h3>
+        <h3><b> Primera aparición: </b> {{ this.hero.first_appearance }}</h3>
+        <mat-chip-listbox>
+          @for (character of this.hero.characters.split(',').slice(0,3); track
+            $index) {
+          <mat-chip cdkDrag color="warn">{{ character }}</mat-chip>
+            }
+        </mat-chip-listbox>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <div class="flex m-3 justify-content-end">
+    <button mat-raised-button color="primary" [routerLink]="['/heroes']">
+      <mat-icon>arrow_back</mat-icon>
+      Atrás
+    </button>
+  </div>
+}@else{
+  <div class="text-center">El heroe no se encuentra registrado</div>
+}
